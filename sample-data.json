@@ -108,5 +108,52 @@
     "activeUsers": 55,
     "department": "All",
     "status": "active"
+  },
+  {
+    "name": "ServiceNow ITSM",
+    "type": "sla_contract",
+    "vendor": "ServiceNow",
+    "cost": 85000,
+    "frequency": "monthly",
+    "licenses": 200,
+    "activeUsers": 180,
+    "department": "IT",
+    "status": "active",
+    "metadata": {
+      "sla_breach_probability": 0.85,
+      "metrics_current": 95.2,
+      "metrics_target": 99.9,
+      "penalty_amount": 25000
+    }
+  },
+  {
+    "name": "AWS EC2 AutoScaling",
+    "type": "infrastructure",
+    "vendor": "Amazon Web Services",
+    "cost": 125000,
+    "frequency": "monthly",
+    "licenses": 0,
+    "activeUsers": 0,
+    "department": "Engineering",
+    "status": "active",
+    "metadata": {
+      "cpu_utilization": 25,
+      "memory_utilization": 30
+    }
+  },
+  {
+    "name": "Deloitte Consulting Invoice",
+    "type": "invoice",
+    "vendor": "Deloitte",
+    "cost": 150000,
+    "frequency": "monthly",
+    "licenses": 0,
+    "activeUsers": 0,
+    "department": "Finance",
+    "status": "active",
+    "metadata": {
+      "variance_amount": 15000,
+      "matched_invoice": false
+    }
   }
 ]

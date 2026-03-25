@@ -32,7 +32,10 @@ const Impact = () => {
     { name: 'Unused Licenses', value: metrics?.breakdown?.unusedLicenses || 0 },
     { name: 'Cost Anomalies', value: metrics?.breakdown?.costAnomalies || 0 },
     { name: 'Optimizations', value: metrics?.breakdown?.optimizations || 0 },
-  ];
+    { name: 'SLA Penalties', value: metrics?.breakdown?.slaPenaltiesAvoided || 0 },
+    { name: 'Infrastructure', value: metrics?.breakdown?.infrastructureOptimized || 0 },
+    { name: 'FinOps Reconciled', value: metrics?.breakdown?.financialOperations || 0 },
+  ].filter(item => item.value > 0);
 
   const beforeAfter = [
     { name: 'Before', spend: metrics?.totalSpend || 0 },

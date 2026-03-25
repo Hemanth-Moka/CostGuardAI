@@ -39,7 +39,9 @@ const Insights = () => {
       duplicate_tools: <RefreshCw className={className} />,
       unused_licenses: <Package className={className} />,
       cost_anomaly: <AlertTriangle className={className} />,
-      sla_risk: <BellRing className={className} />,
+      sla_breach_risk: <BellRing className={className} />,
+      underutilized_infrastructure: <Zap className={className} />,
+      invoice_discrepancy: <AlertTriangle className={className} />,
       optimization: <Zap className={className} />,
     };
     return icons[type] || <Lightbulb className={className} />;
@@ -54,9 +56,9 @@ const Insights = () => {
       <div>
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white text-glow flex items-center gap-3">
           <Bot className="text-primary" />
-          Spend Intelligence & Anomaly Agents
+          Enterprise Optimization Agents
         </h1>
-        <p className="text-gray-600 dark:text-gray-400 mt-2">Continuously monitoring operations data to identify cost leakage and root-cause attribution</p>
+        <p className="text-gray-600 dark:text-gray-400 mt-2">Continuously monitoring operations, infrastructure, vendors, and SLA data to identify cost leakage and risk.</p>
       </div>
 
       <div className="flex gap-2">
@@ -82,30 +84,37 @@ const Insights = () => {
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-6">
-          {insights.map((insight) => (
-            <div key={insight.id || insight._id} className="glass-card rounded-2xl p-6 group hover:border-primary/30 transition-all duration-300">
-              <div className="flex items-start justify-between">
-                <div className="flex items-start gap-5 flex-1">
-                  <div className="p-3 bg-gray-50 dark:bg-white/5 rounded-xl border border-gray-200 dark:border-white/10 group-hover:scale-110 transition-transform duration-300 group-hover:bg-primary/10 group-hover:border-primary/30">
-                    {getTypeIcon(insight.type, "text-gray-500 dark:text-gray-300 group-hover:text-primary transition-colors")}
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-primary transition-colors">{insight.title}</h3>
-                      <span className={`px-3 py-1 rounded-md text-xs font-semibold tracking-wider ${getSeverityStyle(insight.severity)}`}>
-                        {insight.severity.toUpperCase()}
-                      </span>
+          {insights.map((insight) => {
+            const parts = (insight.description || '').split('AI Reasoning:');
+            const mainDesc = parts[0].trim();
+            const aiReasoning = parts[1] 
+              ? parts[1].trim() 
+              : `Root Cause Attribution: Policy disconnect across ${insight.affectedRecords?.length || 0} records. Inefficient resources bypassing automated correction.`;
+            
+            return (
+              <div key={insight.id || insight._id} className="glass-card rounded-2xl p-6 group hover:border-primary/30 transition-all duration-300">
+                <div className="flex items-start justify-between">
+                  <div className="flex items-start gap-5 flex-1">
+                    <div className="p-3 bg-gray-50 dark:bg-white/5 rounded-xl border border-gray-200 dark:border-white/10 group-hover:scale-110 transition-transform duration-300 group-hover:bg-primary/10 group-hover:border-primary/30">
+                      {getTypeIcon(insight.type, "text-gray-500 dark:text-gray-300 group-hover:text-primary transition-colors")}
                     </div>
-                    <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed bg-gray-50 dark:bg-white/5 p-4 rounded-xl border border-gray-200 dark:border-white/5">{insight.description}</p>
-                    
-                    <div className="mb-6 bg-gray-100 dark:bg-black/40 rounded-xl p-4 border border-primary/20 font-mono text-xs">
-                      <div className="flex items-center gap-2 mb-3 text-primary">
-                        <Bot size={14} /> <span className="font-semibold uppercase tracking-wider">Agent Analysis: Root Cause & Math</span>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-2">
+                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-primary transition-colors">{insight.title}</h3>
+                        <span className={`px-3 py-1 rounded-md text-xs font-semibold tracking-wider ${getSeverityStyle(insight.severity)}`}>
+                          {insight.severity.toUpperCase()}
+                        </span>
                       </div>
-                      <p className="mb-1 text-gray-700 dark:text-gray-400">{'>'} Monitoring cross-telemetry signals in operational systems...</p>
-                      <p className="mb-1 text-gray-700 dark:text-gray-400">{'>'} Root Cause Attribution: Policy disconnect across {insight.affectedRecords.length} records. Idle resources bypassing automated teardowns.</p>
-                      <p className="mt-2 text-emerald-600 dark:text-emerald-400 font-bold">{'>'} Quantified Risk: Current Run Rate * 12 Months = ₹{((insight.estimated_savings || 0) * 12).toLocaleString()} annualized negative impact.</p>
-                    </div>
+                      <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed bg-gray-50 dark:bg-white/5 p-4 rounded-xl border border-gray-200 dark:border-white/5">{mainDesc}</p>
+                      
+                      <div className="mb-6 bg-gray-100 dark:bg-black/40 rounded-xl p-4 border border-primary/20 font-mono text-xs">
+                        <div className="flex items-center gap-2 mb-3 text-primary">
+                          <Bot size={14} /> <span className="font-semibold uppercase tracking-wider">Agent Analysis: Root Cause & Math</span>
+                        </div>
+                        <p className="mb-1 text-gray-700 dark:text-gray-400">{'>'} Monitoring cross-telemetry signals in operational systems...</p>
+                        <p className="mb-1 text-gray-700 dark:text-gray-400">{'>'} {aiReasoning}</p>
+                        <p className="mt-2 text-emerald-600 dark:text-emerald-400 font-bold">{'>'} Quantified Risk: Current Run Rate * 12 Months = ₹{((insight.estimated_savings || 0) * 12).toLocaleString()} annualized negative impact.</p>
+                      </div>
 
                     <div className="flex flex-wrap items-center gap-6 text-sm">
                       <div className="flex items-center gap-2 bg-emerald-500/10 px-4 py-2 rounded-lg border border-emerald-500/20 text-gray-600 dark:text-gray-400">
@@ -131,7 +140,8 @@ const Insights = () => {
                 </div>
               </div>
             </div>
-          ))}
+          );
+          })}
         </div>
       )}
     </div>

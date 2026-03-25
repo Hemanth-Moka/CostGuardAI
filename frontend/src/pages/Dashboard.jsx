@@ -82,9 +82,12 @@ const Dashboard = () => {
     { name: 'Unused Licenses', value: metrics?.breakdown?.unusedLicenses || 0 },
     { name: 'Cost Anomalies', value: metrics?.breakdown?.costAnomalies || 0 },
     { name: 'Optimizations', value: metrics?.breakdown?.optimizations || 0 },
-  ];
+    { name: 'SLA Penalties', value: metrics?.breakdown?.slaPenaltiesAvoided || 0 },
+    { name: 'Infrastructure', value: metrics?.breakdown?.infrastructureOptimized || 0 },
+    { name: 'FinOps Reconciled', value: metrics?.breakdown?.financialOperations || 0 },
+  ].filter(item => item.value > 0);
 
-  const COLORS = ['#3B82F6', '#10B981', '#F59E0B', '#8B5CF6'];
+  const COLORS = ['#3B82F6', '#10B981', '#F59E0B', '#8B5CF6', '#EF4444', '#EC4899', '#06B6D4'];
 
   return (
     <div className="space-y-8 relative z-10">

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { recommendationsAPI, actionsAPI } from '../services/api';
-import { Sparkles, XCircle, TrendingDown, ArrowDownCircle, Link as LinkIcon, MessageSquare, CheckCircle, AlertCircle, Bot } from 'lucide-react';
+import { Sparkles, XCircle, TrendingDown, ArrowDownCircle, Link as LinkIcon, MessageSquare, CheckCircle, AlertCircle, Bot, Route, ServerOff, FileCheck } from 'lucide-react';
 
 const Recommendations = () => {
   const [recommendations, setRecommendations] = useState([]);
@@ -58,6 +58,9 @@ const Recommendations = () => {
       downgrade_plan: <ArrowDownCircle className={className} />,
       consolidate_tools: <LinkIcon className={className} />,
       renegotiate: <MessageSquare className={className} />,
+      reroute_traffic: <Route className={className} />,
+      scale_down_servers: <ServerOff className={className} />,
+      reconcile_invoice: <FileCheck className={className} />
     };
     return icons[actionType] || <Sparkles className={className} />;
   };
@@ -94,7 +97,15 @@ const Recommendations = () => {
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-6">
-          {recommendations.map((rec) => (
+          {recommendations.map((rec) => {
+            const desc = rec.description || '';
+            const isPlaybook = desc.includes('Playbook:');
+            const mainDesc = isPlaybook ? desc.split('Playbook:')[0].trim() : desc;
+            const playbookSteps = isPlaybook 
+              ? desc.split('Playbook:')[1].trim() 
+              : `Execution Path: Autonomous sequence to ${(rec.action_type || rec.actionType).replace(/_/g, ' ').toUpperCase()} via enterprise operations API.`;
+
+            return (
             <div key={rec.id || rec._id} className="glass-card rounded-2xl p-6 group hover:border-primary/30 transition-all duration-300">
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-5 flex-1">
@@ -108,15 +119,15 @@ const Recommendations = () => {
                         {(rec.risk_level || rec.riskLevel).toUpperCase()} RISK
                       </span>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">{rec.description}</p>
+                    <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed bg-gray-50 dark:bg-white/5 p-4 rounded-xl border border-gray-200 dark:border-white/5">{mainDesc}</p>
                     
                     {/* Agent Analysis */}
                     <div className="mb-6 bg-gray-100 dark:bg-black/40 rounded-xl p-4 border border-secondary/20 font-mono text-xs">
                       <div className="flex items-center gap-2 mb-3 text-secondary">
-                        <Bot size={14} /> <span className="font-semibold uppercase tracking-wider">Autonomous Resource Agent</span>
+                        <Bot size={14} /> <span className="font-semibold uppercase tracking-wider">Enterprise Agent Playbook</span>
                       </div>
-                      <p className="mb-1 text-gray-700 dark:text-gray-400">{'>'} Simulating consolidation mapping under new organizational rate card...</p>
-                      <p className="mb-1 text-gray-700 dark:text-gray-400">{'>'} Execution Path: Autonomous sequence to {(rec.action_type || rec.actionType).replace(/_/g, ' ').toUpperCase()} via enterprise operations API.</p>
+                      <p className="mb-1 text-gray-700 dark:text-gray-400">{'>'} Simulating state transitions & security implications...</p>
+                      <p className="mb-1 text-gray-700 dark:text-gray-400">{'>'} Playbook: {playbookSteps}</p>
                       <p className="mt-2 text-blue-600 dark:text-blue-400 font-bold">{'>'} Verified Run Rate Math: (₹{(rec.monthly_savings || rec.monthlySavings || 0).toLocaleString()} * 12) = ₹{(rec.yearly_savings || rec.yearlySavings || 0).toLocaleString()} yielding projection.</p>
                     </div>
 
@@ -154,7 +165,8 @@ const Recommendations = () => {
                 </div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </div>
