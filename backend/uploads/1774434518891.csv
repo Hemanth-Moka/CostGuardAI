@@ -1,0 +1,16 @@
+name,type,vendor,cost,frequency,licenses,activeUsers,department,status
+Slack,saas,Slack Technologies,50000,monthly,100,45,Engineering,active
+Zoom,saas,Zoom Video,30000,monthly,80,75,All,active
+AWS,cloud,Amazon,200000,monthly,0,0,Engineering,active
+Salesforce,saas,Salesforce,120000,monthly,50,48,Sales,active
+Jira,saas,Atlassian,40000,monthly,100,60,Engineering,active
+Confluence,saas,Atlassian,35000,monthly,100,55,Engineering,active
+Microsoft 365,saas,Microsoft,80000,monthly,150,140,All,active
+Adobe Creative Cloud,saas,Adobe,60000,monthly,30,12,Design,active
+Asana,saas,Asana,25000,monthly,50,25,Product,active
+Notion,saas,Notion,15000,monthly,60,55,All,active
+GitHub Enterprise,saas,GitHub,45000,monthly,80,78,Engineering,active
+Figma,saas,Figma,35000,monthly,25,24,Design,active
+Slack,saas,Slack Technologies,48000,monthly,95,40,Sales,active
+Datadog,saas,Datadog,90000,monthly,0,0,Engineering,active
+MongoDB Atlas,cloud,MongoDB,55000,monthly,0,0,Engineering,active

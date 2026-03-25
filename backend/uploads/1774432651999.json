@@ -1,0 +1,112 @@
+[
+  {
+    "name": "Slack",
+    "type": "saas",
+    "vendor": "Slack Technologies",
+    "cost": 50000,
+    "frequency": "monthly",
+    "licenses": 100,
+    "activeUsers": 45,
+    "department": "Engineering",
+    "status": "active"
+  },
+  {
+    "name": "Zoom",
+    "type": "saas",
+    "vendor": "Zoom Video",
+    "cost": 30000,
+    "frequency": "monthly",
+    "licenses": 80,
+    "activeUsers": 75,
+    "department": "All",
+    "status": "active"
+  },
+  {
+    "name": "AWS",
+    "type": "cloud",
+    "vendor": "Amazon",
+    "cost": 200000,
+    "frequency": "monthly",
+    "licenses": 0,
+    "activeUsers": 0,
+    "department": "Engineering",
+    "status": "active"
+  },
+  {
+    "name": "Salesforce",
+    "type": "saas",
+    "vendor": "Salesforce",
+    "cost": 120000,
+    "frequency": "monthly",
+    "licenses": 50,
+    "activeUsers": 48,
+    "department": "Sales",
+    "status": "active"
+  },
+  {
+    "name": "Jira",
+    "type": "saas",
+    "vendor": "Atlassian",
+    "cost": 40000,
+    "frequency": "monthly",
+    "licenses": 100,
+    "activeUsers": 60,
+    "department": "Engineering",
+    "status": "active"
+  },
+  {
+    "name": "Confluence",
+    "type": "saas",
+    "vendor": "Atlassian",
+    "cost": 35000,
+    "frequency": "monthly",
+    "licenses": 100,
+    "activeUsers": 55,
+    "department": "Engineering",
+    "status": "active"
+  },
+  {
+    "name": "Microsoft 365",
+    "type": "saas",
+    "vendor": "Microsoft",
+    "cost": 80000,
+    "frequency": "monthly",
+    "licenses": 150,
+    "activeUsers": 140,
+    "department": "All",
+    "status": "active"
+  },
+  {
+    "name": "Adobe Creative Cloud",
+    "type": "saas",
+    "vendor": "Adobe",
+    "cost": 60000,
+    "frequency": "monthly",
+    "licenses": 30,
+    "activeUsers": 12,
+    "department": "Design",
+    "status": "active"
+  },
+  {
+    "name": "Asana",
+    "type": "saas",
+    "vendor": "Asana",
+    "cost": 25000,
+    "frequency": "monthly",
+    "licenses": 50,
+    "activeUsers": 25,
+    "department": "Product",
+    "status": "active"
+  },
+  {
+    "name": "Notion",
+    "type": "saas",
+    "vendor": "Notion",
+    "cost": 15000,
+    "frequency": "monthly",
+    "licenses": 60,
+    "activeUsers": 55,
+    "department": "All",
+    "status": "active"
+  }
+]
