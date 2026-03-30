@@ -24,7 +24,7 @@ exports.uploadData = async (req, res) => {
       department: row.department || 'Unassigned',
       status: row.status || 'active',
       uploadedBy: req.userId
-      // record_id is intentionally omitted
+        
     });
 
     if (fileType === 'text/csv' || req.file.originalname.endsWith('.csv')) {
